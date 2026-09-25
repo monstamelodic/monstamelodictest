@@ -945,3 +945,1368 @@ body.is-loading{overflow:hidden}
   }
   .cursor-aura{display:none}
 }
+
+
+/* =========================================================
+   MOBILE + NAVIGATION STABILITY FIX
+   ========================================================= */
+html,body{max-width:100%;overflow-x:hidden}
+body.nav-open{overflow:hidden!important;touch-action:none}
+
+@media(max-width:1000px){
+  .shell{
+    width:calc(100% - 12px)!important;
+    margin:6px auto!important;
+    border-width:3px!important;
+    border-radius:22px!important;
+  }
+  header{
+    min-height:68px!important;
+    height:68px;
+    padding:0 16px!important;
+    position:sticky!important;
+    top:0!important;
+  }
+  .brand-logo{width:42px!important;height:42px!important}
+  .menu{
+    display:flex!important;
+    position:relative;
+    z-index:10002!important;
+    width:48px;height:48px;
+    align-items:center;justify-content:center;
+    padding:0!important;
+  }
+  .menu span{
+    position:absolute;
+    width:27px!important;height:3px!important;
+    transition:transform .25s ease,top .25s ease;
+  }
+  .menu span:first-child{top:18px}
+  .menu span:last-child{top:27px}
+  .menu[aria-expanded="true"] span:first-child{top:23px;transform:rotate(45deg)}
+  .menu[aria-expanded="true"] span:last-child{top:23px;transform:rotate(-45deg)}
+  header nav{
+    position:fixed!important;
+    inset:0!important;
+    width:100vw!important;
+    height:100dvh!important;
+    min-height:100vh!important;
+    z-index:10001!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:16px!important;
+    padding:88px 24px 42px!important;
+    background:
+      radial-gradient(circle at 50% 22%,rgba(216,75,228,.18),transparent 25%),
+      linear-gradient(160deg,#e7e0fa 0%,#c9b9f2 100%)!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain;
+    transform:translateY(-105%)!important;
+    opacity:0;
+    visibility:hidden;
+    transition:transform .32s ease,opacity .24s ease,visibility .32s!important;
+  }
+  header nav.open{
+    transform:translateY(0)!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  header nav a{
+    display:block!important;
+    width:min(330px,86vw)!important;
+    padding:10px 14px!important;
+    text-align:center!important;
+    font:800 clamp(1.05rem,4.7vw,1.35rem) "Baloo 2"!important;
+    line-height:1.1!important;
+    letter-spacing:.12em!important;
+    white-space:normal!important;
+  }
+  header nav .pill{
+    margin-top:4px;
+    padding:12px 18px!important;
+  }
+  .hero{min-height:auto!important}
+  .hero-main{min-height:auto!important;padding-top:52px!important}
+  .hero-logo{width:min(420px,88vw)!important;max-height:300px!important}
+  .hero-copy h1{font-size:clamp(2rem,9vw,3.15rem)!important}
+  .heading h2,.events h2,.auditions h2,.about h2,.contact h2,
+  .applications-heading h2,.idol-info-heading h2{font-size:clamp(3rem,14vw,5rem)!important}
+}
+
+@media(max-width:680px){
+  .section{padding:66px 18px!important}
+  .hero-copy{margin-top:20px!important}
+  .hero-copy>p:last-of-type{font-size:.98rem!important}
+  .actions{gap:10px!important}
+  .actions .btn{width:100%!important}
+  aside{min-height:68px!important;gap:10px!important}
+  aside a{width:36px!important;height:36px!important}
+  .ticker span{font-size:.72rem!important}
+  .idol-member-grid{gap:34px!important}
+  .news-item{
+    grid-template-columns:1fr auto!important;
+    gap:8px 12px!important;
+    padding:20px 4px!important;
+  }
+  .news-item>span{font-size:.78rem!important}
+  .news-item strong{grid-column:1/2;font-size:1rem!important}
+  .news-item b{grid-row:1/3;grid-column:2;align-self:center}
+  .event{padding:18px!important;gap:14px!important}
+  .audition-card{min-height:auto!important}
+  .footer-brand{font-size:clamp(1.7rem,8vw,2.7rem)!important}
+  .footer-logo{width:64px!important;height:64px!important}
+  .discord-card{max-height:88dvh;overflow-y:auto}
+}
+
+/* When returning with browser Back/Forward, never leave the page transparent. */
+body:not(.page-leaving){opacity:1!important;transform:none!important}
+
+
+/* =========================================================
+   TIMETREE CALENDAR PAGE
+   ========================================================= */
+.calendar-cta{
+  margin-top:28px;
+}
+
+.calendar-main{
+  background:
+    radial-gradient(circle at 85% 12%,rgba(216,75,228,.14),transparent 22%),
+    linear-gradient(180deg,#f8f6ff,#efebff);
+}
+
+.calendar-hero{
+  min-height:560px;
+  padding:72px 7%;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:7%;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:5px solid var(--ink);
+  background:
+    radial-gradient(circle at 78% 24%,rgba(240,138,248,.28),transparent 26%),
+    linear-gradient(145deg,#ddd7f0,#c9b9f2);
+}
+
+.calendar-hero::after{
+  content:"EVENTS ✦ LIVE ✦ STREAMS ✦ RELEASES ✦ MONSTA MELODIC ✦";
+  position:absolute;
+  left:-12px;
+  bottom:18px;
+  white-space:nowrap;
+  font:800 .74rem "Baloo 2";
+  letter-spacing:.18em;
+  opacity:.17;
+}
+
+.calendar-hero-copy h1{
+  font:800 clamp(4rem,8vw,7.3rem)/.8 "Baloo 2";
+  letter-spacing:-.07em;
+  margin:14px 0 26px;
+}
+
+.calendar-hero-copy h1 span{
+  background:linear-gradient(90deg,var(--pink),#ff6bd8,#9f2cff,var(--pink));
+  background-size:220% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:monsterGradient 6s linear infinite;
+}
+
+.calendar-hero-copy>p:last-of-type{
+  max-width:610px;
+  line-height:1.75;
+}
+
+.calendar-actions{
+  justify-content:flex-start;
+}
+
+.calendar-hero-art{
+  display:grid;
+  place-items:center;
+}
+
+.calendar-orbit{
+  width:min(360px,78vw);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  position:relative;
+  border:3px dashed rgba(49,38,101,.28);
+  border-radius:50%;
+  animation:calendarOrbit 18s linear infinite;
+}
+
+.calendar-orbit::before,
+.calendar-orbit::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:2px solid rgba(216,75,228,.2);
+}
+
+.calendar-orbit::before{inset:10%}
+.calendar-orbit::after{inset:-9%}
+
+.calendar-orbit img{
+  width:72%;
+  animation:calendarCounterOrbit 18s linear infinite,logoFloat 5.5s ease-in-out infinite;
+  filter:drop-shadow(0 14px 18px rgba(49,38,101,.18));
+}
+
+.orbit-star{
+  position:absolute;
+  font-size:2rem;
+  color:#fff;
+  text-shadow:2px 2px 0 var(--pink);
+}
+.star-a{top:1%;left:48%}
+.star-b{right:0;bottom:20%;color:var(--pink)}
+.star-c{left:3%;bottom:23%}
+
+@keyframes calendarOrbit{to{transform:rotate(360deg)}}
+@keyframes calendarCounterOrbit{to{transform:rotate(-360deg)}}
+
+.calendar-section{
+  padding:92px 7% 110px;
+  position:relative;
+}
+
+.calendar-section-heading{
+  max-width:820px;
+  margin:0 auto 48px;
+  text-align:center;
+}
+
+.calendar-section-heading h2{
+  font:800 clamp(3.6rem,7vw,6.2rem)/.86 "Baloo 2";
+  letter-spacing:-.06em;
+  margin:10px 0 17px;
+}
+
+.calendar-section-heading>p:last-child{
+  opacity:.68;
+}
+
+.calendar-frame-shell{
+  max-width:1080px;
+  margin:0 auto;
+  padding:20px;
+  position:relative;
+  border:4px solid var(--ink);
+  border-radius:38px;
+  background:
+    radial-gradient(circle at 90% 8%,rgba(216,75,228,.18),transparent 22%),
+    linear-gradient(145deg,#d9cff7,#c2b3ed);
+  box-shadow:12px 14px 0 rgba(49,38,101,.13);
+}
+
+.calendar-frame-shell iframe{
+  display:block;
+  width:100%;
+  min-height:700px;
+  aspect-ratio:680/720;
+  border:0;
+  border-radius:24px;
+  background:#fff;
+}
+
+.calendar-horns span{
+  position:absolute;
+  z-index:3;
+  top:-34px;
+  width:50px;
+  height:60px;
+  background:var(--ink);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.calendar-horns span::after{
+  content:"";
+  position:absolute;
+  inset:8px 8px 3px;
+  background:#fff;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.calendar-horns span:first-child{
+  left:72px;
+  transform:rotate(-12deg);
+}
+
+.calendar-horns span:last-child{
+  right:72px;
+  transform:rotate(12deg);
+}
+
+.calendar-tail{
+  position:absolute;
+  z-index:-1;
+  right:-48px;
+  bottom:-22px;
+  width:98px;
+  height:98px;
+  border-right:13px solid var(--ink);
+  border-bottom:13px solid var(--ink);
+  border-radius:0 0 78px 0;
+  transform:rotate(18deg);
+}
+
+.calendar-tail::after{
+  content:"";
+  position:absolute;
+  right:-18px;
+  bottom:-18px;
+  width:32px;
+  height:32px;
+  background:var(--ink);
+  clip-path:polygon(50% 0,100% 100%,0 78%);
+}
+
+.calendar-mobile-note{
+  max-width:740px;
+  margin:30px auto 0;
+  text-align:center;
+  font-size:.86rem;
+  opacity:.62;
+}
+
+@media(max-width:900px){
+  .calendar-hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding-top:58px;
+  }
+
+  .calendar-hero-copy>p:last-of-type{
+    margin-inline:auto;
+  }
+
+  .calendar-actions{
+    justify-content:center;
+  }
+
+  .calendar-orbit{
+    width:min(260px,68vw);
+  }
+
+  .calendar-frame-shell{
+    padding:12px;
+    border-radius:28px;
+  }
+
+  .calendar-frame-shell iframe{
+    min-height:680px;
+    border-radius:18px;
+  }
+}
+
+@media(max-width:600px){
+  .calendar-hero{
+    padding:52px 20px 75px;
+    min-height:auto;
+  }
+
+  .calendar-hero-copy h1{
+    font-size:clamp(3.1rem,15vw,4.8rem);
+  }
+
+  .calendar-actions{
+    flex-direction:column;
+  }
+
+  .calendar-actions .btn{
+    width:100%;
+  }
+
+  .calendar-section{
+    padding:72px 14px 88px;
+  }
+
+  .calendar-section-heading{
+    padding-inline:8px;
+  }
+
+  .calendar-frame-shell{
+    padding:8px;
+    border-width:3px;
+    border-radius:24px;
+    box-shadow:7px 8px 0 rgba(49,38,101,.12);
+  }
+
+  .calendar-frame-shell iframe{
+    min-height:620px;
+    aspect-ratio:auto;
+  }
+
+  .calendar-horns span{
+    width:35px;
+    height:44px;
+    top:-25px;
+  }
+
+  .calendar-horns span:first-child{left:30px}
+  .calendar-horns span:last-child{right:30px}
+
+  .calendar-tail{
+    right:-17px;
+    bottom:-11px;
+    transform:scale(.65) rotate(18deg);
+    transform-origin:bottom right;
+  }
+}
+
+
+/* =========================================================
+   TITLE CLIPPING + DEDICATED MEMBERS PAGE UPDATE
+   ========================================================= */
+
+/* Keep the big branded titles inside their cards/viewport.
+   The small inline padding prevents rounded Baloo glyphs from being clipped
+   against an overflow boundary. */
+.hero-copy,
+.applications-intro,
+.idol-app-intro,
+.calendar-hero-copy,
+.members-page-hero-copy{
+  min-width:0;
+  max-width:100%;
+}
+
+.hero-copy h1,
+.applications-intro h1,
+.idol-app-intro h1,
+.calendar-hero-copy h1,
+.members-page-hero-copy h1{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  padding-inline:.10em;
+  overflow:visible;
+  overflow-wrap:normal;
+  word-break:normal;
+  text-wrap:balance;
+}
+
+.hero-copy h1{
+  font-size:clamp(2rem,3.45vw,3.35rem);
+  max-width:760px;
+  margin-inline:auto;
+}
+
+@media(max-width:680px){
+  .hero-copy h1{
+    font-size:clamp(2rem,8.2vw,2.95rem)!important;
+    padding-inline:.14em!important;
+  }
+
+  .applications-intro h1,
+  .idol-app-intro h1,
+  .calendar-hero-copy h1,
+  .members-page-hero-copy h1{
+    padding-inline:.12em;
+  }
+}
+
+/* Homepage member teaser */
+.members-home-teaser{
+  min-height:560px;
+  padding:78px 7%;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:7%;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 18%,rgba(216,75,228,.17),transparent 23%),
+    radial-gradient(circle at 86% 80%,rgba(102,80,173,.18),transparent 25%),
+    linear-gradient(145deg,#f8f5ff,#eee7ff);
+  border-bottom:1px solid var(--line);
+}
+
+.members-home-teaser::after{
+  content:"01 ✦ 02 ✦ 03 ✦ 04 ✦ 05 ✦ MONSTA MELODIC";
+  position:absolute;
+  left:-12px;
+  bottom:20px;
+  white-space:nowrap;
+  font:800 .72rem "Baloo 2";
+  letter-spacing:.18em;
+  opacity:.13;
+}
+
+.members-teaser-copy h2{
+  font:800 clamp(3.7rem,7vw,6.6rem)/.82 "Baloo 2";
+  letter-spacing:-.065em;
+  margin:12px 0 24px;
+}
+
+.members-teaser-copy h2 span{
+  background:linear-gradient(90deg,var(--pink),#ff6bd8,#9f2cff,var(--pink));
+  background-size:220% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:monsterGradient 6s linear infinite;
+}
+
+.members-teaser-copy>p:not(.eyebrow){
+  max-width:580px;
+  line-height:1.75;
+  margin-bottom:28px;
+}
+
+.members-teaser-art{
+  min-height:370px;
+  display:grid;
+  place-items:center;
+}
+
+.member-orbit-stack{
+  width:min(390px,80vw);
+  aspect-ratio:1;
+  position:relative;
+  display:grid;
+  place-items:center;
+  border:3px dashed rgba(49,38,101,.18);
+  border-radius:50%;
+}
+
+.member-orbit-stack::before,
+.member-orbit-stack::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:2px solid rgba(216,75,228,.15);
+}
+.member-orbit-stack::before{inset:10%}
+.member-orbit-stack::after{inset:-8%}
+
+.member-orbit-stack img{
+  width:56%;
+  position:relative;
+  z-index:4;
+  filter:drop-shadow(0 15px 16px rgba(49,38,101,.16));
+  animation:logoFloat 5.5s ease-in-out infinite;
+}
+
+.teaser-head{
+  position:absolute;
+  z-index:3;
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  border:3px solid var(--ink);
+  box-shadow:5px 6px 0 rgba(49,38,101,.12);
+}
+.teaser-head::after{
+  content:"";
+  position:absolute;
+  width:108%;
+  height:82%;
+  left:-4%;
+  bottom:-45%;
+  border-radius:48% 48% 20% 20%;
+  background:inherit;
+  border:3px solid var(--ink);
+  z-index:-1;
+}
+.head-1{left:2%;top:42%;background:#e2a1df}
+.head-2{left:22%;top:2%;background:#bca9ec}
+.head-3{right:22%;top:2%;background:#a8cceb}
+.head-4{right:2%;top:42%;background:#e4a0a8}
+.head-5{left:41%;bottom:0;background:#b8dfb4}
+
+/* Members page hero */
+.members-page-main{
+  background:linear-gradient(180deg,#faf8ff,#f0ecff);
+}
+
+.members-page-hero,
+.staff-page-hero{
+  min-height:610px;
+  padding:76px 7%;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:7%;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:5px solid var(--ink);
+  background:
+    radial-gradient(circle at 80% 20%,rgba(240,138,248,.30),transparent 26%),
+    radial-gradient(circle at 14% 85%,rgba(102,80,173,.17),transparent 26%),
+    linear-gradient(145deg,#ddd7f0,#c9b9f2);
+}
+
+.members-page-hero-copy h1,
+.staff-page-hero-copy h1{
+  font:800 clamp(4rem,7.5vw,7rem)/.8 "Baloo 2";
+  letter-spacing:-.07em;
+  margin:14px 0 25px;
+}
+
+.members-page-hero-copy h1 span,
+.staff-page-hero-copy h1 span{
+  background:linear-gradient(90deg,var(--pink),#ff68d8,#9f2cff,var(--pink));
+  background-size:220% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:monsterGradient 6s linear infinite;
+}
+
+.members-page-hero-copy>p:not(.eyebrow),
+.staff-page-hero-copy>p:not(.eyebrow){
+  max-width:620px;
+  line-height:1.75;
+  margin-bottom:27px;
+}
+
+.members-page-logo,
+.staff-page-hero-art{
+  display:grid;
+  place-items:center;
+}
+
+.members-logo-orbit{
+  width:min(360px,75vw);
+  aspect-ratio:1;
+  position:relative;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:3px dashed rgba(49,38,101,.24);
+  animation:calendarOrbit 20s linear infinite;
+}
+
+.members-logo-orbit img{
+  width:70%;
+  animation:calendarCounterOrbit 20s linear infinite,logoFloat 5.5s ease-in-out infinite;
+  filter:drop-shadow(0 15px 20px rgba(49,38,101,.16));
+}
+
+.members-logo-orbit span{
+  position:absolute;
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border:2px solid var(--ink);
+  border-radius:50%;
+  background:#fff;
+  font:800 .68rem "Baloo 2";
+  box-shadow:4px 5px 0 rgba(49,38,101,.10);
+}
+.members-logo-orbit span:nth-of-type(1){top:-4%;left:44%}
+.members-logo-orbit span:nth-of-type(2){right:2%;top:26%}
+.members-logo-orbit span:nth-of-type(3){right:13%;bottom:7%}
+.members-logo-orbit span:nth-of-type(4){left:13%;bottom:7%}
+.members-logo-orbit span:nth-of-type(5){left:2%;top:26%}
+
+.members-page-roster{
+  padding-top:92px;
+}
+
+/* Make five-member desktop roster a little more editorial on its own page */
+@media(min-width:901px){
+  .members-page-roster .idol-member-grid{
+    gap:54px 28px;
+  }
+}
+
+@media(max-width:900px){
+  .members-home-teaser,
+  .members-page-hero{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .members-home-teaser{
+    padding-top:66px;
+  }
+
+  .members-teaser-copy{
+    order:1;
+  }
+
+  .members-teaser-art{
+    order:2;
+    min-height:300px;
+  }
+
+  .members-teaser-copy>p:not(.eyebrow),
+  .members-page-hero-copy>p:not(.eyebrow){
+    margin-inline:auto;
+  }
+
+  .members-page-logo{
+    margin-top:10px;
+  }
+}
+
+@media(max-width:600px){
+  .members-home-teaser{
+    padding:62px 20px 82px;
+  }
+
+  .members-teaser-copy h2{
+    font-size:clamp(3.2rem,15vw,4.7rem);
+  }
+
+  .members-page-hero{
+    min-height:auto;
+    padding:58px 20px 78px;
+  }
+
+  .members-page-hero-copy h1{
+    font-size:clamp(3.15rem,15vw,4.8rem);
+  }
+
+  .member-orbit-stack{
+    width:min(300px,78vw);
+  }
+
+  .teaser-head{
+    width:52px;
+    height:52px;
+  }
+
+  .members-page-roster{
+    padding-top:72px!important;
+  }
+}
+
+
+/* =========================================================
+   PUNCTUATION CLIPPING FIX + HOMEPAGE SPARKLE ROSTER
+   ========================================================= */
+
+/* Give oversized display text actual breathing room on both edges. */
+.hero-copy,
+.applications-intro,
+.idol-app-intro,
+.calendar-hero-copy,
+.members-page-hero-copy,
+.members-teaser-copy{
+  box-sizing:border-box;
+  min-width:0;
+  max-width:100%;
+  padding-inline:clamp(22px, 2.5vw, 42px);
+  overflow:visible !important;
+}
+
+.hero-copy h1,
+.applications-intro h1,
+.idol-app-intro h1,
+.calendar-hero-copy h1,
+.members-page-hero-copy h1,
+.members-teaser-copy h2{
+  box-sizing:border-box;
+  width:auto !important;
+  max-width:100% !important;
+  margin-inline:auto !important;
+  padding-inline:.20em !important;
+  overflow:visible !important;
+  white-space:normal !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+  text-wrap:balance;
+}
+
+/* The previous very tight tracking could push the rounded final period outside
+   its text box. This keeps the chunky style without cutting the punctuation. */
+.hero-copy h1,
+.applications-intro h1,
+.idol-app-intro h1,
+.calendar-hero-copy h1,
+.members-page-hero-copy h1{
+  letter-spacing:-.025em !important;
+}
+
+/* Keep the large typography dramatic while fitting safely in its card. */
+.hero-copy h1{
+  font-size:clamp(2rem, 3.05vw, 3.25rem) !important;
+}
+
+.applications-intro h1,
+.idol-app-intro h1,
+.calendar-hero-copy h1,
+.members-page-hero-copy h1{
+  font-size:clamp(3.15rem, 5.7vw, 5.85rem) !important;
+}
+
+/* Sparkle treatment around the logo. */
+.sparkle-orbit{
+  position:relative;
+  border:2px dashed rgba(49,38,101,.15) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,.78) 0%,
+      rgba(246,226,255,.42) 38%,
+      rgba(255,255,255,.08) 67%,
+      transparent 72%) !important;
+  box-shadow:
+    0 0 0 22px rgba(216,75,228,.035),
+    0 0 72px rgba(159,44,255,.10);
+}
+
+.sparkle-orbit::before,
+.sparkle-orbit::after{
+  border-color:rgba(216,75,228,.13) !important;
+}
+
+.sparkle-orbit img{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:61% !important;
+  height:auto;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  filter:
+    drop-shadow(0 14px 15px rgba(49,38,101,.16))
+    drop-shadow(0 0 20px rgba(216,75,228,.12));
+}
+
+/* Hide old silhouettes even if the browser has partially cached markup/styles. */
+.sparkle-orbit .teaser-head{
+  display:none !important;
+}
+
+.roster-spark{
+  position:absolute;
+  z-index:4;
+  line-height:1;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  text-shadow:
+    2px 2px 0 #d84be4,
+    -1px -1px 0 #6d43d8,
+    0 0 18px rgba(216,75,228,.48);
+  animation:rosterTwinkle 3.2s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.rs-1{left:11%; top:18%; font-size:clamp(25px,4vw,44px);}
+.rs-2{left:43%; top:5%; font-size:clamp(18px,3vw,32px); animation-delay:.45s;}
+.rs-3{right:12%; top:19%; font-size:clamp(18px,3.2vw,34px); animation-delay:.9s;}
+.rs-4{right:5%; top:50%; font-size:clamp(25px,4vw,44px); animation-delay:1.35s;}
+.rs-5{right:20%; bottom:10%; font-size:clamp(19px,3vw,34px); animation-delay:1.8s;}
+.rs-6{left:18%; bottom:10%; font-size:clamp(25px,4vw,43px); animation-delay:2.25s;}
+.rs-7{left:5%; top:51%; font-size:clamp(17px,3vw,31px); animation-delay:2.7s;}
+
+.roster-dot{
+  position:absolute;
+  z-index:3;
+  width:9px;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:#d84be4;
+  box-shadow:0 0 13px rgba(216,75,228,.48);
+  animation:rosterTwinkle 3.8s ease-in-out infinite reverse;
+}
+.rd-1{left:28%; top:11%;}
+.rd-2{right:27%; bottom:13%; animation-delay:.8s;}
+.rd-3{left:10%; bottom:32%; animation-delay:1.6s;}
+
+@keyframes rosterTwinkle{
+  0%,100%{transform:scale(.82) rotate(-8deg); opacity:.48;}
+  50%{transform:scale(1.16) rotate(8deg); opacity:1;}
+}
+
+@media (max-width:700px){
+  .hero-copy,
+  .applications-intro,
+  .idol-app-intro,
+  .calendar-hero-copy,
+  .members-page-hero-copy,
+  .members-teaser-copy{
+    padding-inline:18px;
+  }
+
+  .hero-copy h1,
+  .applications-intro h1,
+  .idol-app-intro h1,
+  .calendar-hero-copy h1,
+  .members-page-hero-copy h1,
+  .members-teaser-copy h2{
+    padding-inline:.16em !important;
+    max-width:calc(100vw - 48px) !important;
+  }
+
+  .applications-intro h1,
+  .idol-app-intro h1,
+  .calendar-hero-copy h1,
+  .members-page-hero-copy h1{
+    font-size:clamp(2.7rem, 13vw, 4.35rem) !important;
+  }
+
+  .sparkle-orbit img{
+    width:58% !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .roster-spark,
+  .roster-dot{
+    animation:none !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL GLOBAL DISPLAY-TYPE PUNCTUATION FIX
+   Applies to homepage, members.html, calendar.html,
+   idol-applications.html, and volunteer applications.
+   ========================================================= */
+
+/*
+  The gradient words use background-clip:text. On rounded Baloo 2 glyphs,
+  browsers can clip the outer antialiasing of periods and terminal curves
+  at the inline span's own paint box even when the H1 itself has overflow
+  visible. Give the GRADIENT SPAN its own padded inline-block paint area.
+*/
+.hero-copy h1 span,
+.members-teaser-copy h2 span,
+.members-page-hero-copy h1 span,
+.calendar-hero-copy h1 span,
+.idol-app-intro h1 span,
+.applications-intro h1 span{
+  display:inline-block !important;
+  box-sizing:content-box !important;
+  padding-left:.08em !important;
+  padding-right:.22em !important;
+  padding-top:.04em !important;
+  padding-bottom:.08em !important;
+  margin-left:-.08em !important;
+  margin-right:-.06em !important;
+  overflow:visible !important;
+  line-height:inherit !important;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+
+/* Give every major display heading a safe paint gutter too. */
+.hero-copy h1,
+.members-teaser-copy h2,
+.members-page-hero-copy h1,
+.calendar-hero-copy h1,
+.idol-app-intro h1,
+.applications-intro h1{
+  padding-left:.28em !important;
+  padding-right:.34em !important;
+  margin-left:-.10em !important;
+  margin-right:-.10em !important;
+  max-width:calc(100% + .20em) !important;
+  overflow:visible !important;
+  text-rendering:geometricPrecision;
+}
+
+/* Do not crop title paint at the immediate content-column level. */
+.hero-copy,
+.members-teaser-copy,
+.members-page-hero-copy,
+.calendar-hero-copy,
+.idol-app-intro,
+.applications-intro{
+  overflow:visible !important;
+}
+
+/*
+  The hero panels still hide decorative backgrounds horizontally, but give
+  their text content a little extra inner gutter so the final punctuation
+  never reaches the physical panel edge.
+*/
+.hero-main,
+.members-page-hero,
+.calendar-hero,
+.idol-app-hero,
+.applications-hero{
+  padding-left:max(7%,32px);
+  padding-right:max(7%,32px);
+}
+
+/* Calendar/member/idol display titles were closest to the edge on desktop. */
+@media(min-width:901px){
+  .members-page-hero-copy h1,
+  .calendar-hero-copy h1,
+  .idol-app-intro h1,
+  .applications-intro h1{
+    font-size:clamp(3.1rem,5.35vw,5.55rem) !important;
+  }
+}
+
+/* Mobile: retain the same punctuation gutter without forcing overflow. */
+@media(max-width:700px){
+  .hero-copy h1,
+  .members-teaser-copy h2,
+  .members-page-hero-copy h1,
+  .calendar-hero-copy h1,
+  .idol-app-intro h1,
+  .applications-intro h1{
+    width:auto !important;
+    max-width:calc(100vw - 36px) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:.18em !important;
+    padding-right:.26em !important;
+  }
+
+  .hero-copy h1 span,
+  .members-teaser-copy h2 span,
+  .members-page-hero-copy h1 span,
+  .calendar-hero-copy h1 span,
+  .idol-app-intro h1 span,
+  .applications-intro h1 span{
+    padding-right:.24em !important;
+  }
+}
+
+
+/* =========================================================
+   HOMEPAGE MEMBERS FEATURE — CENTERED
+   Centers the full "Meet the Monsters" feature in its section
+   without affecting members.html.
+   ========================================================= */
+
+.members-teaser{
+  max-width: 1500px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  grid-template-columns: minmax(420px, 1fr) minmax(520px, 1fr) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(3rem, 6vw, 7rem) !important;
+  padding-left: clamp(32px, 5vw, 80px) !important;
+  padding-right: clamp(32px, 5vw, 80px) !important;
+}
+
+.members-teaser-art{
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+.members-teaser-copy{
+  justify-self: center !important;
+  align-self: center !important;
+  width: 100% !important;
+  max-width: 680px !important;
+}
+
+@media (max-width: 900px){
+  .members-teaser{
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  .members-teaser-art,
+  .members-teaser-copy{
+    justify-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .members-teaser-copy{
+    max-width: 680px !important;
+  }
+
+  .members-teaser-copy .btn,
+  .members-teaser-copy a{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* =========================================================
+   HOMEPAGE ROSTER LOGO — TRUE CENTER FIX
+   Keep the logo centered even while it floats.
+   ========================================================= */
+.sparkle-orbit img{
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  animation:rosterLogoFloatCentered 5.5s ease-in-out infinite !important;
+  transform-origin:center center !important;
+}
+
+@keyframes rosterLogoFloatCentered{
+  0%,100%{
+    transform:translate(-50%,-50%) translateY(0) rotate(-1deg);
+  }
+  50%{
+    transform:translate(-50%,-50%) translateY(-9px) rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .sparkle-orbit img{
+    animation:none !important;
+    transform:translate(-50%,-50%) !important;
+  }
+}
+
+
+/* =========================================================
+   MONSTA MELODIC — PROFESSIONAL POLISH LAYER
+   (nav scaling, interactive member cards, staff page)
+   ========================================================= */
+
+/* --- Nav breathing room for the extra Staff link --- */
+@media(min-width:1001px){
+  nav{gap:clamp(12px,1.55vw,23px);font-size:clamp(.68rem,.95vw,.78rem)}
+  .pill{padding:9px clamp(10px,1.2vw,15px)}
+}
+
+/* --- Member card: photo becomes an interactive button --- */
+button.idol-photo{
+  appearance:none;-webkit-appearance:none;
+  background:none;padding:0;margin:0;
+  font:inherit;color:inherit;text-align:inherit;
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+button.idol-photo:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+.idol-position{
+  position:absolute;z-index:5;bottom:12px;left:12px;right:44px;
+  background:rgba(23,17,38,.72);color:#fff;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:999px;
+  padding:6px 12px;
+  font:800 .64rem "Baloo 2";letter-spacing:.06em;text-transform:uppercase;
+  backdrop-filter:blur(3px);
+  opacity:0;transform:translateY(6px);
+  transition:opacity .25s ease,transform .25s ease;
+}
+.idol-flip-hint{
+  position:absolute;z-index:5;top:12px;right:12px;
+  background:rgba(255,255,255,.85);color:var(--ink);
+  border:2px solid var(--ink);border-radius:999px;
+  padding:5px 10px;font:800 .6rem "Baloo 2";letter-spacing:.04em;
+  opacity:.92;
+}
+@media(hover:hover) and (pointer:fine){
+  .idol-flip-hint{display:none}
+}
+.idol-member-card:hover .idol-position,
+.idol-member-card:focus-within .idol-position,
+.idol-member-card.is-flipped .idol-position{
+  opacity:1;transform:translateY(0);
+}
+
+.idol-hover-panel{
+  position:absolute;inset:auto 0 0 0;z-index:6;
+  display:flex;flex-direction:column;gap:10px;
+  padding:18px 16px 16px;
+  background:linear-gradient(0deg,rgba(23,17,38,.92) 8%,rgba(23,17,38,.55) 60%,transparent 100%);
+  color:#fff;text-align:left;
+  transform:translateY(100%);
+  opacity:0;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .3s ease;
+}
+.idol-member-card:hover .idol-hover-panel,
+.idol-member-card:focus-within .idol-hover-panel,
+.idol-member-card.is-flipped .idol-hover-panel{
+  transform:translateY(0);
+  opacity:1;
+}
+.idol-quote{
+  font:600 .82rem/1.45 "DM Sans";
+  font-style:italic;
+  opacity:.94;
+}
+.idol-social{display:flex;gap:8px}
+.idol-social a{
+  width:30px;height:30px;border-radius:50%;
+  border:2px solid #fff;display:grid;place-items:center;
+  font:800 .6rem "Baloo 2";color:#fff;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.idol-social a:hover{background:#fff;color:var(--ink);transform:translateY(-2px)}
+
+/* Soften and elevate the photo frame a touch further */
+.idol-photo{position:relative;isolation:isolate}
+.idol-photo::selection{background:transparent}
+
+/* Numbered badge sits above the new overlays */
+.idol-number{z-index:7}
+
+/* --- "Want to be member 06" CTA band on the roster page --- */
+.roster-cta{padding-top:0}
+.roster-cta-card{
+  border:4px solid var(--ink);border-radius:34px;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(216,75,228,.28),transparent 26%),
+    linear-gradient(135deg,var(--purple),#4c3c8f);
+  color:#fff;padding:56px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  box-shadow:11px 12px 0 rgba(49,38,101,.16);
+}
+.roster-cta-card h2{font:800 clamp(2.6rem,5vw,4.4rem)/.86 "Baloo 2";letter-spacing:-.05em;margin:10px 0 14px}
+.roster-cta-card h2 span{color:#ffb7f2}
+.roster-cta-card .bodycopy{max-width:520px;color:rgba(255,255,255,.82);margin-top:14px}
+.roster-cta-card .btn.primary{background:#fff;color:var(--ink);flex-shrink:0}
+@media(max-width:900px){
+  .roster-cta-card{flex-direction:column;align-items:flex-start;padding:40px 30px}
+}
+
+/* =========================================================
+   STAFF PAGE
+   ========================================================= */
+.staff-page-main{background:linear-gradient(180deg,#faf8ff,#f0ecff)}
+
+.staff-page-hero{border-bottom:5px solid var(--ink)}
+.staff-page-hero-copy h1{margin:14px 0 22px}
+
+.staff-roster{padding-top:88px}
+
+.staff-filters{
+  display:flex;flex-wrap:wrap;gap:10px;
+  margin-bottom:44px;
+}
+.staff-filter{
+  border:2px solid var(--ink);background:#fff;color:var(--ink);
+  border-radius:999px;padding:10px 20px;
+  font:800 .74rem "Baloo 2";letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.staff-filter:hover{transform:translateY(-2px)}
+.staff-filter.is-active{
+  background:var(--ink);color:#fff;
+  box-shadow:4px 5px 0 rgba(216,75,228,.4);
+}
+
+.staff-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:34px 26px;
+}
+.staff-card{
+  --tilt-x:0deg;--tilt-y:0deg;
+  transform:perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  text-align:center;
+  border:3px solid var(--ink);border-radius:28px;
+  background:#fff;
+  padding:30px 20px 26px;
+  display:flex;flex-direction:column;align-items:center;
+  box-shadow:7px 8px 0 rgba(49,38,101,.12);
+  transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease;
+}
+.staff-card:hover{box-shadow:10px 13px 0 rgba(49,38,101,.16)}
+.staff-card.is-hidden{display:none}
+
+.staff-avatar{
+  width:112px;height:112px;border-radius:50%;
+  border:4px solid var(--ink);overflow:hidden;position:relative;
+  margin-bottom:14px;
+  box-shadow:5px 6px 0 rgba(49,38,101,.14);
+}
+.staff-avatar::before{
+  content:"";position:absolute;width:44%;aspect-ratio:1;border-radius:50%;
+  left:28%;top:16%;background:rgba(40,30,70,.78);
+}
+.staff-avatar::after{
+  content:"";position:absolute;width:74%;height:64%;left:13%;bottom:-10%;
+  border-radius:46% 46% 12% 12%;background:rgba(40,30,70,.78);
+}
+.staff-avatar img{width:100%;height:100%;object-fit:cover;position:relative;z-index:3;display:block}
+
+.staff-avatar-open{
+  display:grid;place-items:center;
+  background:repeating-linear-gradient(-45deg,var(--lav) 0 8px,#fff 8px 16px);
+}
+.staff-avatar-open span{
+  position:relative;z-index:3;
+  width:56px;height:56px;border-radius:50%;
+  border:3px solid var(--ink);background:#fff;
+  display:grid;place-items:center;
+  font:800 1.5rem "Baloo 2";color:var(--ink);
+}
+.staff-card-open{background:#fbf9ff;border-style:dashed}
+
+.staff-dept-tag{
+  display:inline-block;
+  font:800 .6rem "Baloo 2";letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;border:2px solid var(--ink);
+  margin-bottom:12px;
+}
+.dept-management{background:#ffd9f4}
+.dept-production{background:#cfe6ff}
+.dept-creative{background:#e2d3ff}
+.dept-community{background:#d3f5d0}
+
+.staff-plate{
+  position:relative;
+  width:100%;
+  background:var(--ink);color:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  font:800 1.05rem "Baloo 2";letter-spacing:.02em;
+  margin-bottom:10px;
+  background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.06) 0 6px,transparent 6px 12px);
+}
+.staff-role{font:800 .92rem "Baloo 2";letter-spacing:-.01em;margin-bottom:8px}
+.staff-blurb{font-size:.83rem;line-height:1.55;opacity:.72;margin-bottom:16px}
+.staff-social{display:flex;gap:8px;margin-top:auto}
+.staff-social a{
+  height:32px;padding:0 12px;border-radius:999px;
+  border:2px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;
+  font:800 .64rem "Baloo 2";letter-spacing:.05em;color:var(--ink);
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.staff-social a:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+
+.staff-empty-state{
+  text-align:center;padding:60px 20px;opacity:.6;font-weight:700;
+}
+
+.staff-cta{padding-top:0}
+.staff-cta-card{
+  border:4px solid var(--ink);border-radius:34px;
+  background:radial-gradient(circle at 85% 15%,rgba(240,138,248,.32),transparent 26%),var(--purple);
+  color:#fff;padding:56px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  box-shadow:11px 12px 0 rgba(49,38,101,.16);
+}
+.staff-cta-card h2{font:800 clamp(2.6rem,5vw,4.4rem)/.86 "Baloo 2";letter-spacing:-.05em;margin:10px 0 14px}
+.staff-cta-card h2 span{color:#ffb7f2}
+.staff-cta-card .bodycopy{max-width:520px;color:rgba(255,255,255,.82)}
+.staff-cta-card .audition-actions{flex-shrink:0}
+
+@media(max-width:1100px){
+  .staff-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .staff-page-hero{grid-template-columns:1fr;text-align:center;padding-top:58px}
+  .staff-page-hero-copy>p:not(.eyebrow){margin-inline:auto}
+  .staff-page-hero-copy .actions{justify-content:center!important}
+  .staff-page-hero-art{margin-top:10px}
+  .staff-grid{grid-template-columns:repeat(2,1fr)}
+  .staff-filters{justify-content:center}
+  .staff-cta-card{flex-direction:column;align-items:flex-start;padding:40px 30px}
+}
+@media(max-width:600px){
+  .staff-page-hero{min-height:auto;padding:58px 20px 78px}
+  .staff-roster{padding-top:68px!important}
+  .staff-grid{grid-template-columns:1fr;gap:24px}
+  .staff-filters{gap:8px}
+  .staff-filter{padding:8px 16px;font-size:.68rem}
+}
+
+/* Respect reduced motion for the new interactive pieces */
+@media(prefers-reduced-motion:reduce){
+  .idol-hover-panel,.idol-position{transition:none}
+}

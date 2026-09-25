@@ -2,16 +2,24 @@ const menu = document.querySelector(".menu");
 const nav = document.querySelector("nav");
 
 if (menu && nav) {
+  const closeMobileNav = () => {
+    nav.classList.remove("open");
+    menu.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+  };
+
   menu.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     menu.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("nav-open", open);
   });
 
   nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menu.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", closeMobileNav);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1000) closeMobileNav();
   });
 }
 
@@ -84,14 +92,11 @@ document.addEventListener("keydown", event => {
   }
 });
 
-/* Auto-open Discord once per browser session, after the loader finishes. */
+/* Auto-open Discord after the homepage finishes loading. */
 window.addEventListener("load", () => {
-  if (!sessionStorage.getItem("monstaDiscordShown")) {
-    window.setTimeout(() => {
-      openDiscordModal();
-      sessionStorage.setItem("monstaDiscordShown", "1");
-    }, 4200);
-  }
+  window.setTimeout(() => {
+    openDiscordModal();
+  }, 4200);
 });
 
 
@@ -150,7 +155,7 @@ ambient.innerHTML = `
 document.body.prepend(ambient);
 
 /* Add monster-eye decorations to primary hero areas */
-document.querySelectorAll(".hero-main, .applications-hero, .idol-app-hero").forEach((hero, index) => {
+document.querySelectorAll(".hero-main, .applications-hero, .idol-app-hero, .staff-page-hero").forEach((hero, index) => {
   if (hero.querySelector(".monster-eyes")) return;
   const eyes = document.createElement("div");
   eyes.className = `monster-eyes monster-eyes-${index + 1}`;
@@ -179,14 +184,14 @@ if (window.matchMedia("(pointer:fine)").matches) {
   };
   follow();
 
-  document.querySelectorAll("a, button, summary, .idol-member-card").forEach(el => {
+  document.querySelectorAll("a, button, summary, .idol-member-card, .staff-card").forEach(el => {
     el.addEventListener("mouseenter", () => aura.classList.add("is-hot"));
     el.addEventListener("mouseleave", () => aura.classList.remove("is-hot"));
   });
 }
 
 /* Tiny perspective response for major cards */
-document.querySelectorAll(".idol-member-card, .kaiju-application, .requirement-card").forEach(card => {
+document.querySelectorAll(".idol-member-card, .kaiju-application, .requirement-card, .staff-card").forEach(card => {
   card.addEventListener("pointermove", e => {
     if (!window.matchMedia("(pointer:fine)").matches) return;
     const r = card.getBoundingClientRect();
@@ -201,14 +206,80 @@ document.querySelectorAll(".idol-member-card, .kaiju-application, .requirement-c
   });
 });
 
-/* Smooth internal page transition, without hijacking anchors/external links */
-document.querySelectorAll('a[href$=".html"], a[href*=".html#"]').forEach(link => {
+/* Smooth cross-page transition. Hash links on the current page stay native. */
+document.querySelectorAll('a[href]').forEach(link => {
   link.addEventListener("click", e => {
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || link.target === "_blank") return;
-    const href = link.getAttribute("href");
-    if (!href) return;
+    if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || link.target === "_blank") return;
+    const raw = link.getAttribute("href");
+    if (!raw || raw === "#" || raw.startsWith("mailto:") || raw.startsWith("tel:")) return;
+
+    let target;
+    try { target = new URL(raw, window.location.href); } catch { return; }
+
+    // Never fade the page for same-document anchors such as #news or index.html#events.
+    const sameDocument = target.origin === location.origin && target.pathname === location.pathname;
+    if (sameDocument) return;
+
+    // Only animate internal HTML navigation. External links remain normal.
+    if (target.origin !== location.origin || !target.pathname.endsWith(".html")) return;
+
     e.preventDefault();
     document.body.classList.add("page-leaving");
-    window.setTimeout(() => window.location.href = href, 260);
+    window.setTimeout(() => { window.location.href = target.href; }, 220);
   });
+});
+
+/* -----------------------------
+   MEMBER CARD BIO FLIP (members.html)
+   ----------------------------- */
+document.querySelectorAll(".idol-photo").forEach(photo => {
+  photo.addEventListener("click", () => {
+    const card = photo.closest(".idol-member-card");
+    if (!card) return;
+    const wasOpen = card.classList.contains("is-flipped");
+    document.querySelectorAll(".idol-member-card.is-flipped").forEach(open => {
+      if (open !== card) open.classList.remove("is-flipped");
+    });
+    card.classList.toggle("is-flipped", !wasOpen);
+  });
+});
+document.addEventListener("click", event => {
+  if (event.target.closest(".idol-member-card")) return;
+  document.querySelectorAll(".idol-member-card.is-flipped").forEach(open => open.classList.remove("is-flipped"));
+});
+
+/* -----------------------------
+   STAFF DEPARTMENT FILTER (staff.html)
+   ----------------------------- */
+const staffFilters = document.querySelectorAll(".staff-filter");
+const staffCards = document.querySelectorAll(".staff-card");
+const staffEmptyState = document.querySelector(".staff-empty-state");
+
+if (staffFilters.length && staffCards.length) {
+  staffFilters.forEach(button => {
+    button.addEventListener("click", () => {
+      staffFilters.forEach(b => b.classList.remove("is-active"));
+      button.classList.add("is-active");
+
+      const filter = button.dataset.filter;
+      let visibleCount = 0;
+
+      staffCards.forEach(card => {
+        const match = filter === "all" || card.dataset.dept === filter;
+        card.classList.toggle("is-hidden", !match);
+        if (match) visibleCount++;
+      });
+
+      if (staffEmptyState) staffEmptyState.hidden = visibleCount !== 0;
+    });
+  });
+}
+
+/* Safari/iOS and browser back-forward cache can restore the previous body classes.
+   Always reset them when a page becomes visible again. */
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("page-leaving", "nav-open", "is-loading");
+  if (nav) nav.classList.remove("open");
+  if (menu) menu.setAttribute("aria-expanded", "false");
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
 });

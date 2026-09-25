@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#312665">
+  <title>Staff — Monsta Melodic</title>
+  <meta name="description" content="Meet the kaiju crew behind Monsta Melodic — the staff and volunteers who run the project.">
+  <link rel="icon" type="image/png" href="Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="index.html#home" aria-label="Monsta Melodic home">
+        <img src="Logo.png" alt="" class="brand-logo">
+        <span>MONSTA MELODIC</span>
+      </a>
+
+      <button class="menu" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+
+      <nav>
+        <a href="index.html#home">Home</a>
+        <a href="members.html">Members</a>
+        <a href="staff.html" aria-current="page">Staff</a>
+        <a href="index.html#news">News</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#auditions">Auditions</a>
+        <a href="index.html#about">About</a>
+        <a class="pill" href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="staff-page-main">
+      <section class="staff-page-hero">
+        <div class="staff-page-hero-copy reveal">
+          <p class="eyebrow">Monsta Melodic · Behind the scenes</p>
+          <h1>THE<br><span>KAIJU CREW.</span></h1>
+          <p>The staff and volunteers keeping the chaos organized — production, creative, and community, all in one collective.</p>
+          <div class="actions" style="justify-content:flex-start">
+            <a class="btn primary" href="applications.html">Join the Crew ↗</a>
+            <a class="btn ghost" href="index.html">Back Home</a>
+          </div>
+        </div>
+
+        <div class="staff-page-hero-art reveal" aria-hidden="true">
+          <div class="members-logo-orbit">
+            <img src="Logo.png" alt="">
+            <span>MGT</span><span>PRD</span><span>CRE</span><span>COM</span><span>✦</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section staff-roster" id="staff">
+        <div class="heading reveal">
+          <div>
+            <p class="eyebrow">The crew</p>
+            <h2>STAFF</h2>
+          </div>
+          <p>Filter by department to meet the humans (and monsters) running the project day to day.</p>
+        </div>
+
+        <div class="staff-filters reveal" role="tablist" aria-label="Filter staff by department">
+          <button type="button" class="staff-filter is-active" data-filter="all">All Crew</button>
+          <button type="button" class="staff-filter" data-filter="management">Management</button>
+          <button type="button" class="staff-filter" data-filter="production">Production</button>
+          <button type="button" class="staff-filter" data-filter="creative">Creative</button>
+          <button type="button" class="staff-filter" data-filter="community">Community</button>
+        </div>
+
+        <!-- Replace staff1.jpg etc. with real staff photos, and swap the ??? placeholders for real names once confirmed. -->
+        <div class="staff-grid">
+          <article class="staff-card reveal" data-dept="management">
+            <div class="staff-avatar member-purple">
+              <img src="staff1.jpg" alt="Project Director" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-management">Management</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Founder &amp; Project Director</p>
+            <p class="staff-blurb">Oversees the overall vision, direction, and day-to-day operations of Monsta Melodic.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="management">
+            <div class="staff-avatar member-pink">
+              <img src="staff2.jpg" alt="Idol Manager" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-management">Management</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Idol Manager</p>
+            <p class="staff-blurb">Supports the members directly — scheduling, wellbeing, and keeping every era on track.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="production">
+            <div class="staff-avatar member-blue">
+              <img src="staff3.jpg" alt="Music Producer" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-production">Production</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Music Producer</p>
+            <p class="staff-blurb">Writes and produces the original tracks that make up the Monsta Melodic discography.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="production">
+            <div class="staff-avatar member-red">
+              <img src="staff4.jpg" alt="Choreographer" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-production">Production</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Choreographer</p>
+            <p class="staff-blurb">Builds the original choreography and leads practice sessions ahead of every performance.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="production">
+            <div class="staff-avatar member-green">
+              <img src="staff5.jpg" alt="Video Editor" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-production">Production</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Video Editor</p>
+            <p class="staff-blurb">Cuts performance footage, MVs, and content edits for every platform the group posts to.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="creative">
+            <div class="staff-avatar member-purple">
+              <img src="staff6.jpg" alt="Graphic Designer" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-creative">Creative</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Graphic Designer</p>
+            <p class="staff-blurb">Designs the visual identity — graphics, merch concepts, and promotional artwork.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card reveal" data-dept="community">
+            <div class="staff-avatar member-pink">
+              <img src="staff7.jpg" alt="Social Media Manager" onerror="this.style.display='none'">
+            </div>
+            <span class="staff-dept-tag dept-community">Community</span>
+            <div class="staff-plate">???</div>
+            <p class="staff-role">Social Media Manager</p>
+            <p class="staff-blurb">Runs the socials and keeps fans in the loop with announcements, updates, and content drops.</p>
+            <div class="staff-social"><a href="#" aria-label="Instagram">IG</a><a href="#" class="discord-trigger" aria-label="Discord">DC</a></div>
+          </article>
+
+          <article class="staff-card staff-card-open reveal" data-dept="community">
+            <div class="staff-avatar staff-avatar-open">
+              <span>?</span>
+            </div>
+            <span class="staff-dept-tag dept-community">Community</span>
+            <div class="staff-plate">OPEN ROLE</div>
+            <p class="staff-role">Discord / Community Moderator</p>
+            <p class="staff-blurb">This spot in the crew is still open. Come help us keep the monster cave running smoothly.</p>
+            <div class="staff-social"><a href="applications.html">Apply ↗</a></div>
+          </article>
+        </div>
+
+        <p class="staff-empty-state" hidden>No crew members in this department yet — check back soon.</p>
+      </section>
+
+      <section class="section staff-cta">
+        <div class="staff-cta-card reveal">
+          <div>
+            <p class="eyebrow">Build the monster behind the music</p>
+            <h2>CREW<br><span>APPLICATIONS OPEN.</span></h2>
+            <p class="bodycopy">Monsta Melodic runs on volunteers. If you're skilled in production, design, video, or community management, we'd love to have you on the team.</p>
+          </div>
+          <div class="audition-actions">
+            <a class="btn light" href="applications.html">Volunteer Applications ↗</a>
+            <a class="btn ghost" href="index.html#contact">Contact Us ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="Logo.png" alt="" class="footer-logo">
+          <span>MONSTA MELODIC</span>
+        </div>
+        <div class="footer-nav">
+          <a href="index.html#home">Home</a>
+          <a href="members.html">Members</a>
+          <a href="staff.html">Staff</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="index.html#auditions">Auditions</a>
+          <a href="applications.html">Applications</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Monsta Melodic</span>
+        <span>Independent idol project</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
