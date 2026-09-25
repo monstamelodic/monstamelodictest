@@ -28,3 +28,13 @@ The Members and Staff pages intentionally display placeholders. For member photo
 The six existing Google Form IDs are retained in `applications.html`; their links use `/viewform` for applicants. Confirm each form is published and accepting responses in Google Forms before sharing this site.
 
 The former idol applications page and all links to it were removed.
+
+## Uploading to a GitHub Pages test repository
+
+Upload the files inside the ZIP directly to the repository root. You should see `index.html`, `styles.css`, `script.js`, `posts.json`, `Logo.png`, and the other pages side by side in the repository file list. Commit all files together. If your test repository uses a `github.io/<repository>/` URL, remove `CNAME` from that test repository; it belongs only on the production repository using monstamelodic.com. CSS, JavaScript, and news requests have a version query to avoid stale browser caches. After pushing, open the site in a fresh/private browser window or use a hard refresh. GitHub Pages may take several minutes to publish a new commit.
+
+## Branding and interactions
+
+The site uses the supplied Monsta Melodic logo and takes color and visual cues from the official art: candy purple and pink, mint eyeballs, checkerboard texture, horn shapes, floating elements and sparkle marks. Animations respect reduced-motion settings. The short loading screen ends automatically even if an external font or calendar is slow.
+
+The homepage Discord invitation uses the group's existing URL in `script.js` (`discordInvite`). The popup is automatic only once per browser session and can always be opened from the homepage social card. Update that constant if your invite changes. The homepage includes a full social and contact section.
