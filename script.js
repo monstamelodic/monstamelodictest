@@ -52,7 +52,7 @@ async function loadPosts() {
   const archive = document.querySelector('#news-archive');
   if (!latest && !archive) return;
   try {
-    const response = await fetch('posts.json?v=20260927a', {cache:'no-cache'});
+    const response = await fetch('posts.json?v=20260927b', {cache:'no-cache'});
     if (!response.ok) throw new Error('News unavailable');
     const posts = await response.json();
     if (!Array.isArray(posts)) throw new Error('Invalid news data');
@@ -117,7 +117,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const loader = document.createElement('div');
   loader.className = 'monsta-loader';
   loader.setAttribute('aria-hidden', 'true');
-  loader.innerHTML = '<div class="tunnel" aria-hidden="true">' + Array.from({length: 9}, (_, i) => `<span class="tunnel-ring" style="--ring:${i}"></span>`).join('') + '<span class="tunnel-center"></span></div><div class="loader-core"><img src="Logo.png" alt=""><p>ENTERING THE MONSTER CAVE ✧</p></div>'; 
+  loader.innerHTML = '<div class="tunnel" aria-hidden="true">' + Array.from({length: 15}, (_, i) => `<span class="tunnel-ring" style="--ring:${i}"></span>`).join('') + '<span class="tunnel-center"></span></div><div class="loader-core"><img src="Logo.png" alt=""><p>ENTERING THE MONSTER CAVE ✧</p></div>'; 
   document.body.prepend(loader);
   document.body.classList.add('loading');
   const start = performance.now();
@@ -125,7 +125,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const dismiss = () => {
     if (dismissed) return;
     dismissed = true;
-    const remaining = Math.max(0, 1150 - (performance.now() - start));
+    const remaining = Math.max(0, 2300 - (performance.now() - start));
     setTimeout(() => {
       loader.classList.add('done');
       document.body.classList.remove('loading');
@@ -134,7 +134,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   };
   if (document.readyState === 'complete') dismiss();
   else window.addEventListener('load', dismiss, {once:true});
-  setTimeout(dismiss, 2900);
+  setTimeout(dismiss, 3600);
 }
 
 // Home invitation and reusable Discord buttons. The link is the site's existing invite.

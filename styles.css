@@ -82,3 +82,21 @@
 .loader-core{z-index:3}.loader-core img{width:min(34vw,220px);filter:drop-shadow(0 12px 22px #15052f)}.loader-core p{font-size:11px;text-shadow:0 2px 8px #180925;white-space:nowrap}.loader-track{display:none}
 @media(max-width:620px){.hero-title{font-size:clamp(49px,12.5vw,72px)!important}.tunnel-ring{width:175vmax;height:175vmax}.tunnel-center{width:48vw;height:48vw}.loader-core img{width:min(48vw,175px)}.loader-core p{font-size:9px;letter-spacing:.13em}.split-intro,.roster-section,.staff-section,.news-section,.roles-section,.calendar-section{padding-top:calc(70px + 62px)}.split-intro:before,.roster-section:before,.staff-section:before,.news-section:before,.roles-section:before,.calendar-section:before{background-size:650px 100px;height:100px}}
 @media(prefers-reduced-motion:reduce){.hero-title span,.marquee-track,.tunnel-ring{animation:none!important}.tunnel-ring{opacity:.55;transform:translate(-50%,-50%) scale(.9)}.monsta-loader{display:none!important}}
+/* Softer portal and precise finishing from the latest review. */
+.hero-title{font-family:'DynaPuff','Baloo 2',sans-serif;font-weight:700;letter-spacing:-.07em;font-size:clamp(72px,7.8vw,130px)!important;line-height:1.04}
+.hero-title span{text-transform:none;max-width:none}
+.role-card:before,.role-card:after{background:#221636;filter:none;clip-path:polygon(48% 0,100% 100%,0 100%);top:-32px;width:42px;height:60px;z-index:4}
+.role-card:before{left:10%;right:auto;transform:rotate(-11deg)}
+.role-card:after{left:auto;right:10%;transform:rotate(11deg)}
+.role-card:hover:before{transform:rotate(-17deg) translateY(-4px)}
+.role-card:hover:after{transform:rotate(17deg) translateY(-4px)}
+.monsta-loader{background:radial-gradient(circle at center,#130c27 0 12%,#43277b 43%,#9b67ce 83%,#2a1a50 100%);transition:opacity .85s ease,visibility .85s ease}
+.tunnel{background:radial-gradient(circle,#1b1031 0 9%,transparent 34%,#e5bafa24 75%,#36205d77 100%)}
+.tunnel:after{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(circle,transparent 0 16%,#c997ed17 40%,#e1aef633 70%,#2414448a 100%);pointer-events:none}
+.tunnel-ring{background:conic-gradient(from 30deg,#b388e6,#7e43c2,#d590dc,#a577d7,#503293,#e6a6e6,#b388e6);-webkit-mask:radial-gradient(closest-side,transparent 0 42%,#0007 48%,#000 53% 62%,#0007 67%,transparent 74%);mask:radial-gradient(closest-side,transparent 0 42%,#0007 48%,#000 53% 62%,#0007 67%,transparent 74%);filter:blur(2px);animation:tunnelDream 5.8s linear infinite;animation-delay:calc(var(--ring) * -.39s)}
+.tunnel-ring:nth-child(3n+2){background:conic-gradient(from 80deg,#925dc7,#cc8be8,#7554bf,#e7a6dc,#8365c9,#a97de1,#925dc7)}
+.tunnel-ring:nth-child(3n+3){background:conic-gradient(from 190deg,#b875d8,#7550b0,#d994dd,#9d79e6,#53308f,#e2a4dd,#b875d8)}
+.tunnel-center{background:radial-gradient(circle,#130b24 0%,#21113c 46%,#8a58b366 77%,transparent 100%);box-shadow:0 0 120px 70px #5a399075}
+@keyframes tunnelDream{0%{transform:translate(-50%,-50%) rotate(0deg) scale(.17);opacity:0}10%{opacity:.72}68%{opacity:.79}100%{transform:translate(-50%,-50%) rotate(220deg) scale(2.4);opacity:0}}
+@media(max-width:620px){.hero-title{font-size:clamp(50px,12.2vw,74px)!important}.role-card:before,.role-card:after{top:-25px;width:31px;height:46px}}
+@media(prefers-reduced-motion:reduce){.tunnel-ring{animation:none!important}}

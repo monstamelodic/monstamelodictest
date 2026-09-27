@@ -42,3 +42,5 @@ The homepage Discord invitation uses the group's existing URL in `script.js` (`d
 ## Latest visual changes
 
 The entry animation uses layered rotating purple and pink tunnel rings with the logo at the center. The homepage wordmark cycles through white, pink, mint and lilac. The pink marquee duplicates its full text run so the animation joins without a gap. The mint slime edge is the reusable `slime-drip.svg` asset on the pale sections of every page.
+
+The homepage title uses DynaPuff for a rounder look inspired by the supplied Mochi Boom example. The spiral loader now uses more softly masked rings with a slower 5.8-second travel cycle; the loading state itself is brief and bounded. The slime SVG has no tile-edge stroke, removing the vertical repeat seam. Volunteer horns have separate left and right anchors and a dark fill.
