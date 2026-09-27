@@ -38,3 +38,7 @@ Upload the files inside the ZIP directly to the repository root. You should see 
 The site uses the supplied Monsta Melodic logo and takes color and visual cues from the official art: candy purple and pink, mint eyeballs, checkerboard texture, horn shapes, floating elements and sparkle marks. Animations respect reduced-motion settings. The short loading screen ends automatically even if an external font or calendar is slow.
 
 The homepage Discord invitation uses the group's existing URL in `script.js` (`discordInvite`). The popup is automatic only once per browser session and can always be opened from the homepage social card. Update that constant if your invite changes. The homepage includes a full social and contact section.
+
+## Latest visual changes
+
+The entry animation uses layered rotating purple and pink tunnel rings with the logo at the center. The homepage wordmark cycles through white, pink, mint and lilac. The pink marquee duplicates its full text run so the animation joins without a gap. The mint slime edge is the reusable `slime-drip.svg` asset on the pale sections of every page.

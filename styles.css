@@ -59,3 +59,26 @@
 .staff-avatar{border:6px solid white;box-shadow:0 0 0 3px #342354,6px 7px 0 #3a255d33}
 .staff-avatar span{font-family:'Baloo 2';font-size:77px}.news-tile{position:relative;border:2px solid #ad72d4;background:linear-gradient(145deg,#47285e,#2b1d48)}.news-tile:nth-child(even){background:linear-gradient(145deg,#7d3c9d,#3e225f)}
 .archive-item{position:relative;overflow:hidden}.archive-item:before{content:"✧";position:absolute;font-size:150px;right:2%;top:-80%;color:#b179e21c;pointer-events:none}.archive-item:hover{border-color:#ad5ed9}.calendar-frame{box-shadow:9px 10px 0 #c074df;position:relative}
+/* September refinement: living wordmark, seamless marquee, portal and slime. */
+.hero-title{font-size:clamp(67px,7.7vw,128px)!important;letter-spacing:-.085em;line-height:.91;max-width:680px}
+.hero-title span{display:block;width:max-content;max-width:100%;color:#fff7ff;animation:wordmarkColor 7s ease-in-out infinite alternate;text-shadow:0 5px 0 #2b174b}
+.hero-title span:nth-child(2){animation-delay:-3.5s}
+@keyframes wordmarkColor{0%,100%{color:#fff9ff}27%{color:#ef7be9}58%{color:#b9f4ac}82%{color:#caa5ff}}
+.marquee{transform:none;margin:0;overflow:hidden;padding:13px 0}.marquee-track{display:flex;width:max-content;animation:marqueeSeamless 32s linear infinite;will-change:transform}.marquee-track span{display:block;flex:0 0 auto;white-space:nowrap;padding:0;letter-spacing:.18em}@keyframes marqueeSeamless{to{transform:translateX(-50%)}}
+/* Every pale content block begins under an organic mint slime lip. */
+.split-intro,.roster-section,.staff-section,.news-section,.roles-section,.calendar-section{position:relative;padding-top:calc(clamp(70px,9vw,145px) + 60px)}
+.split-intro:before,.roster-section:before,.staff-section:before,.news-section:before,.roles-section:before,.calendar-section:before{content:"";position:absolute;top:-1px;left:0;right:0;height:112px;background:url('slime-drip.svg') repeat-x left top/800px 112px;z-index:1;pointer-events:none}
+.split-intro>div,.roster-section>*,.staff-section>*,.news-section>*,.roles-section>*,.calendar-section>*{position:relative;z-index:2}
+/* Animated tunnel in the existing bounded loading state. */
+.monsta-loader{background:radial-gradient(circle,#100c23 0 7%,#35215e 31%,#9b4bd5 74%,#281a4f 100%);isolation:isolate}
+.monsta-loader:before{opacity:.26;z-index:-1}
+.monsta-loader:after{z-index:5;font-size:75px;right:12%;top:12%}
+.tunnel{position:absolute;inset:0;overflow:hidden;display:grid;place-items:center;perspective:850px}
+.tunnel-ring{position:absolute;left:50%;top:50%;width:105vmax;height:105vmax;border-radius:53% 47% 56% 44% / 47% 54% 46% 53%;background:conic-gradient(from 20deg,#aa63ec 0deg 28deg,#712fc3 44deg 75deg,#f58bdb 88deg 109deg,#c4a0ff 125deg 153deg,#5226a0 171deg 200deg,#ffb0eb 215deg 242deg,#9254d8 257deg 295deg,#c9a4fa 310deg 337deg,#7737b7 360deg);-webkit-mask:radial-gradient(closest-side,transparent 0 53%,#000 55% 70%,transparent 72%);mask:radial-gradient(closest-side,transparent 0 53%,#000 55% 70%,transparent 72%);box-shadow:inset 0 0 70px #220b67;opacity:0;animation:tunnelRush 2.9s linear infinite;animation-delay:calc(var(--ring) * -.32s);will-change:transform,opacity}
+.tunnel-ring:nth-child(3n+2){background:conic-gradient(from 90deg,#b78bf9,#6c2fbc,#ef74dc,#b88ff5,#49208c,#d878ec,#b78bf9);border-radius:48% 52% 43% 57% / 55% 45% 54% 46%}
+.tunnel-ring:nth-child(3n+3){background:conic-gradient(from 190deg,#6230ac,#c18bf5,#f893e7,#7831ba,#ec83d7,#3c1b7a,#6230ac);border-radius:56% 44% 51% 49% / 43% 57% 48% 52%}
+.tunnel-center{position:absolute;width:min(35vw,350px);height:min(35vw,350px);border-radius:50%;background:radial-gradient(circle,#100a21 0%,#201136 54%,#6630aa99 82%,transparent 100%);box-shadow:0 0 90px 55px #1d0a3a99;z-index:1}
+@keyframes tunnelRush{0%{transform:translate(-50%,-50%) rotate(0deg) scale(.15);opacity:0}15%{opacity:.92}78%{opacity:.95}100%{transform:translate(-50%,-50%) rotate(390deg) scale(2.4);opacity:0}}
+.loader-core{z-index:3}.loader-core img{width:min(34vw,220px);filter:drop-shadow(0 12px 22px #15052f)}.loader-core p{font-size:11px;text-shadow:0 2px 8px #180925;white-space:nowrap}.loader-track{display:none}
+@media(max-width:620px){.hero-title{font-size:clamp(49px,12.5vw,72px)!important}.tunnel-ring{width:175vmax;height:175vmax}.tunnel-center{width:48vw;height:48vw}.loader-core img{width:min(48vw,175px)}.loader-core p{font-size:9px;letter-spacing:.13em}.split-intro,.roster-section,.staff-section,.news-section,.roles-section,.calendar-section{padding-top:calc(70px + 62px)}.split-intro:before,.roster-section:before,.staff-section:before,.news-section:before,.roles-section:before,.calendar-section:before{background-size:650px 100px;height:100px}}
+@media(prefers-reduced-motion:reduce){.hero-title span,.marquee-track,.tunnel-ring{animation:none!important}.tunnel-ring{opacity:.55;transform:translate(-50%,-50%) scale(.9)}.monsta-loader{display:none!important}}
