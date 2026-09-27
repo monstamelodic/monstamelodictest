@@ -112,29 +112,18 @@ async function loadPosts() {
 }
 loadPosts();
 
-// Short branded entrance. It never waits indefinitely for third-party resources.
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+// Lightweight entrance on the homepage only. Never wait for fonts or remote assets.
+if (document.querySelector('.hero') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const loader = document.createElement('div');
   loader.className = 'monsta-loader';
   loader.setAttribute('aria-hidden', 'true');
-  loader.innerHTML = '<div class="tunnel" aria-hidden="true">' + Array.from({length: 15}, (_, i) => `<span class="tunnel-ring" style="--ring:${i}"></span>`).join('') + '<span class="tunnel-center"></span></div><div class="loader-core"><img src="Logo.png" alt=""><p>ENTERING THE MONSTER CAVE ✧</p></div>'; 
+  const bat = '<svg viewBox="0 0 64 32" aria-hidden="true" focusable="false"><path d="M32 13c-3-4-6-7-8-8l-2 7c-6-5-13-6-20-3 3 2 5 5 5 8-2 1-3 3-4 6 6-2 10-1 14 4 3-4 7-5 11-3l4 6 4-6c4-2 8-1 11 3 4-5 8-6 14-4-1-3-2-5-4-6 0-3 2-6 5-8-7-3-14-2-20 3l-2-7c-2 1-5 4-8 8Z" fill="currentColor"/></svg>';
+  loader.innerHTML = `<div class="loader-bats">${bat.repeat(3)}</div><div class="loader-core"><img src="Logo.png" alt=""><div class="loader-track"><span></span></div></div>`;
   document.body.prepend(loader);
-  document.body.classList.add('loading');
-  const start = performance.now();
-  let dismissed = false;
-  const dismiss = () => {
-    if (dismissed) return;
-    dismissed = true;
-    const remaining = Math.max(0, 2300 - (performance.now() - start));
-    setTimeout(() => {
-      loader.classList.add('done');
-      document.body.classList.remove('loading');
-      setTimeout(() => loader.remove(), 650);
-    }, remaining);
-  };
-  if (document.readyState === 'complete') dismiss();
-  else window.addEventListener('load', dismiss, {once:true});
-  setTimeout(dismiss, 3600);
+  setTimeout(() => {
+    loader.classList.add('done');
+    setTimeout(() => loader.remove(), 300);
+  }, 1150);
 }
 
 // Home invitation and reusable Discord buttons. The link is the site's existing invite.
