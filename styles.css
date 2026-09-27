@@ -59,3 +59,34 @@
 .staff-avatar{border:6px solid white;box-shadow:0 0 0 3px #342354,6px 7px 0 #3a255d33}
 .staff-avatar span{font-family:'Baloo 2';font-size:77px}.news-tile{position:relative;border:2px solid #ad72d4;background:linear-gradient(145deg,#47285e,#2b1d48)}.news-tile:nth-child(even){background:linear-gradient(145deg,#7d3c9d,#3e225f)}
 .archive-item{position:relative;overflow:hidden}.archive-item:before{content:"✧";position:absolute;font-size:150px;right:2%;top:-80%;color:#b179e21c;pointer-events:none}.archive-item:hover{border-color:#ad5ed9}.calendar-frame{box-shadow:9px 10px 0 #c074df;position:relative}
+
+/* Rounder display typography across the entire site. */
+h1,h2,h3,.feature-card strong,.social-card strong,.brand,.bio-quote,.staff-nameplate,.loader-core p,.discord-panel h2{
+  font-family:'Fredoka','Baloo 2',sans-serif;
+  letter-spacing:-.035em;
+}
+h1,h2,h3,.feature-card strong{-webkit-text-stroke:.45px currentColor;text-shadow:0 2px 0 #170d2929}
+.hero-title{font-size:clamp(56px,7vw,116px)!important;line-height:.98;max-width:680px;letter-spacing:-.05em;margin:29px 0 30px}
+.hero-title span{display:block;width:max-content;max-width:100%;color:#f681e9;animation:monstaColor 8s ease-in-out infinite;-webkit-text-stroke:1px #24163d;text-shadow:2px 3px 0 #21123e,0 0 20px #ee7ff755}
+.hero-title span:last-child{animation-delay:-4s}
+@keyframes monstaColor{0%,100%{color:#f681e9}33%{color:#b6f7b8}66%{color:#d1b7ff}}
+/* Each of the two identical runs is wider than a desktop viewport. */
+.marquee{transform:rotate(-1deg);font:700 15px 'Fredoka','Baloo 2',sans-serif;letter-spacing:.09em}
+.marquee-track{display:flex;width:max-content;animation:marquee 40s linear infinite;will-change:transform}
+.marquee-track span{display:block;flex:none;white-space:nowrap;padding-right:1.25em}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* One tile has matching left and right edge profiles for a continuous drip. */
+.split-intro,.roster-section,.staff-section,.news-section,.roles-section,.calendar-section{position:relative;padding-top:clamp(135px,10vw,165px)}
+.split-intro:before,.roster-section:before,.staff-section:before,.news-section:before,.roles-section:before,.calendar-section:before{
+  content:"";position:absolute;top:0;left:0;right:0;height:118px;
+  background:url('slime-drip.svg') left top/600px 118px repeat-x;
+  pointer-events:none;z-index:1;
+}
+@media(max-width:620px){
+  .hero-title{font-size:clamp(51px,12vw,76px)!important}
+  .split-intro,.roster-section,.staff-section,.news-section,.roles-section,.calendar-section{padding-top:130px}
+  .marquee{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.hero-title span{animation:none!important}.marquee-track{animation:none!important}}
+
+.member-meta h3,.staff-content h3,.role-card h3{font-family:'Fredoka','Baloo 2',sans-serif;letter-spacing:-.025em}
