@@ -90,3 +90,27 @@ h1,h2,h3,.feature-card strong{-webkit-text-stroke:.45px currentColor;text-shadow
 @media(prefers-reduced-motion:reduce){.hero-title span{animation:none!important}.marquee-track{animation:none!important}}
 
 .member-meta h3,.staff-content h3,.role-card h3{font-family:'Fredoka','Baloo 2',sans-serif;letter-spacing:-.025em}
+
+/* Display type belongs on section headings; cards and utility copy keep their original fonts. */
+h1,h2{font-family:'Fredoka','Baloo 2',sans-serif;letter-spacing:.015em;-webkit-text-stroke:.7px #251938;text-shadow:1px 2px 0 #150e2780}
+h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.035em;-webkit-text-stroke:0;text-shadow:none}
+.feature-card strong{font-family:'Space Grotesk',sans-serif;letter-spacing:-.08em;-webkit-text-stroke:0;text-shadow:none}
+.social-card strong,.member-meta h3,.staff-content h3,.role-card h3,.discord-panel h2{font-family:'Baloo 2',sans-serif;letter-spacing:-.035em;-webkit-text-stroke:0;text-shadow:none}
+.brand,.bio-quote,.staff-nameplate,.loader-core p{font-family:'Space Grotesk',sans-serif}
+.news-tile h3,.archive-item h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.045em;-webkit-text-stroke:0;text-shadow:none}
+.hero-title{letter-spacing:.02em;line-height:1.08}
+.hero-title span{width:auto;letter-spacing:.02em;-webkit-text-stroke:.75px #211333;text-shadow:1px 3px 0 #21123e}
+.page-hero h1,.section h2,.site-footer h2{line-height:1.07}
+/* The old shine sheet was visible even while idle, and competed with card horns. */
+.feature-card:after,.news-tile:after,.social-card:after{display:none}
+.role-card:before,.role-card:after{
+  display:block;inset:auto;top:-28px;bottom:auto;
+  width:43px;height:56px;background:#19121f;
+  clip-path:polygon(48% 0,100% 100%,0 100%);
+  filter:none;transition:transform .25s ease;
+}
+.role-card:before{left:12%;right:auto;transform:rotate(-14deg)}
+.role-card:after{left:auto;right:12%;transform:rotate(14deg)}
+.role-card:hover:before{transform:rotate(-20deg) translateY(-4px)}
+.role-card:hover:after{left:auto;transform:rotate(20deg) translateY(-4px)}
+@media(max-width:620px){.hero-title{letter-spacing:.01em}.role-card:before,.role-card:after{top:-23px;width:32px;height:45px}}
