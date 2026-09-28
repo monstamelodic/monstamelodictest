@@ -114,3 +114,24 @@ h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.035em;-webkit-text-st
 .role-card:hover:before{transform:rotate(-20deg) translateY(-4px)}
 .role-card:hover:after{left:auto;transform:rotate(20deg) translateY(-4px)}
 @media(max-width:620px){.hero-title{letter-spacing:.01em}.role-card:before,.role-card:after{top:-23px;width:32px;height:45px}}
+
+/* The browser's font stroke produced sharp artifacts inside rounded letters. */
+h1,h2,h3,.hero-title span,.feature-card strong,.social-card strong,.role-card h3,.news-tile h3,.archive-item h3{-webkit-text-stroke:0!important}
+h1,h2,.hero-title span{text-shadow:0 2px 0 #1b112c80}
+/* Shine lives inside each card/button and stays completely out of the page background. */
+.button{position:relative;overflow:hidden;isolation:isolate}
+.button::after,.feature-card::after,.news-tile::after,.social-card::after,.card-sheen::after{
+  content:"";display:block;position:absolute;top:-40%;bottom:-40%;left:0;width:28%;height:auto;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.36),transparent);
+  transform:translateX(-250%) rotate(18deg);opacity:0;pointer-events:none;
+  transition:transform .65s ease,opacity .15s ease;
+}
+.button:hover::after,.button:focus-visible::after,.feature-card:hover::after,.feature-card:focus-visible::after,.news-tile:hover::after,.news-tile:focus-visible::after,.social-card:hover::after,.social-card:focus-visible::after,.role-card:hover .card-sheen::after,.role-card:focus-visible .card-sheen::after{
+  transform:translateX(650%) rotate(18deg);opacity:1;
+}
+.card-sheen{position:absolute;inset:0;border-radius:43px;overflow:hidden;pointer-events:none;z-index:2}
+.card-sheen::after{z-index:1}
+@media(max-width:620px){.card-sheen{border-radius:29px}}
+@media(prefers-reduced-motion:reduce){.button::after,.feature-card::after,.news-tile::after,.social-card::after,.card-sheen::after{transition:none;opacity:0!important}}
+
+.feature-card:hover::after,.feature-card:focus-visible::after,.news-tile:hover::after,.news-tile:focus-visible::after,.social-card:hover::after,.social-card:focus-visible::after{left:0}
