@@ -135,3 +135,23 @@ h1,h2,.hero-title span{text-shadow:0 2px 0 #1b112c80}
 @media(prefers-reduced-motion:reduce){.button::after,.feature-card::after,.news-tile::after,.social-card::after,.card-sheen::after{transition:none;opacity:0!important}}
 
 .feature-card:hover::after,.feature-card:focus-visible::after,.news-tile:hover::after,.news-tile:focus-visible::after,.social-card:hover::after,.social-card:focus-visible::after{left:0}
+
+/* Real staff profiles: one person, every role, and every relevant department. */
+.staff-profile{padding:28px 20px 22px;display:flex;flex-direction:column}
+.staff-profile[hidden]{display:none}
+.staff-profile .staff-avatar{flex:none;margin-bottom:16px}
+.staff-profile .staff-avatar span{font:700 40px 'Space Grotesk',sans-serif;letter-spacing:-.04em}
+.staff-profile .staff-content{padding:0;display:flex;flex-direction:column;flex:1;min-width:0}
+.staff-profile h3{font:700 clamp(21px,2vw,27px)/1.15 'Space Grotesk',sans-serif;letter-spacing:-.035em;overflow-wrap:anywhere;margin:0 0 14px}
+.staff-departments{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.staff-profile .staff-bio{min-height:0;margin:0 0 20px;font-size:14px;line-height:1.65;color:#5e526b}
+.staff-roles{margin-top:auto;border-top:1px solid #e4d8ea;border-bottom:1px solid #e4d8ea;padding:13px 0}
+.staff-roles summary{cursor:pointer;font-size:13px;font-weight:800;color:#382450;line-height:1.5}
+.staff-roles summary:hover{color:#8d35a4}
+.staff-roles .role-count{display:inline-block;margin-left:5px;padding:0 7px;background:#efdef5;border-radius:20px;color:#78358b;font-size:11px}
+.staff-roles ul{margin:12px 0 0;padding-left:19px;color:#5e526b;font-size:13px;line-height:1.6}
+.staff-roles li+li{margin-top:5px}
+.staff-social{margin-top:16px;font-size:12px;font-weight:700;color:#7b3395;overflow-wrap:anywhere;line-height:1.6}
+.staff-social:hover{text-decoration:underline}
+.staff-filter-status{font-size:13px;color:#786589;margin:0 0 14px}
+@media(max-width:620px){.staff-profile{padding:28px 22px 24px}.staff-profile h3{font-size:27px}}

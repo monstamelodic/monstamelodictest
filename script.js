@@ -35,7 +35,7 @@ document.querySelectorAll('.member-close').forEach(button => {
 });
 
 const filters = document.querySelectorAll('[data-filter]');
-const staffCards = document.querySelectorAll('[data-department]');
+const staffCards = document.querySelectorAll('[data-departments], [data-department]');
 filters.forEach(button => button.addEventListener('click', () => {
   const value = button.dataset.filter;
   filters.forEach(filter => {
@@ -43,7 +43,16 @@ filters.forEach(button => button.addEventListener('click', () => {
     filter.classList.toggle('active', selected);
     filter.setAttribute('aria-pressed', String(selected));
   });
-  staffCards.forEach(card => { card.hidden = value !== 'All' && card.dataset.department !== value; });
+  let visibleCount = 0;
+  staffCards.forEach(card => {
+    const departments = (card.dataset.departments || card.dataset.department || '').split(/\s+/);
+    card.hidden = value !== 'All' && !departments.includes(value);
+    if (!card.hidden) visibleCount += 1;
+  });
+  const status = document.querySelector('.staff-filter-status');
+  if (status) status.textContent = value === 'All'
+    ? `Showing all ${visibleCount} staff members.`
+    : `Showing ${visibleCount} ${value.toLowerCase()} staff ${visibleCount === 1 ? 'member' : 'members'}.`;
 }));
 
 // Edit posts.json to publish news without changing this file.
