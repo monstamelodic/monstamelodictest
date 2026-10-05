@@ -3,22 +3,22 @@
     "slug": "new-home",
     "date": "2026-09-25",
     "category": "Project update",
-    "title": "A refreshed home for Monsta Melodic",
+    "title": "A refreshed new website for Monsta Melodic",
     "excerpt": "Explore the new look, meet the team and follow our updates in one place.",
     "body": [
-      "meow.",
+      "Welcome to the new website! We worked really hard to edit and change it, so I hope you like it.",
       "Volunteer applications are still open! Take a look at the volunteer page if you would like to get involved."
     ]
   },
   {
     "slug": "website-opens",
-    "date": "2026-08-15",
+    "date": "2026-09-30",
     "category": "Announcement",
-    "title": "Welcome to the Monsta Melodic website",
-    "excerpt": "A new home for updates, people and everything happening in our little monster universe.",
+    "title": "IDOL APPLICATIONS ARE CLOSED!",
+    "excerpt": "Thanks for all the support so far!",
     "body": [
-      "Welcome to the official home of Monsta Melodic. This site is where you can meet the team, find project updates and see how to get involved.",
-      "We’re an independent NYC/NJ alt idol project with a love of music and all things a little monstrous."
+      "Idol applications are now closed! Thank you to all the people that applied.",
+      "Stay tuned to see all the new updates to come..."
     ]
   }
 ]
