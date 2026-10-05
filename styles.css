@@ -155,3 +155,21 @@ h1,h2,.hero-title span{text-shadow:0 2px 0 #1b112c80}
 .staff-social:hover{text-decoration:underline}
 .staff-filter-status{font-size:13px;color:#786589;margin:0 0 14px}
 @media(max-width:620px){.staff-profile{padding:28px 22px 24px}.staff-profile h3{font-size:27px}}
+
+/* Contain hover sheen within cards, including dynamically loaded news. */
+.news-tile{overflow:hidden;isolation:isolate}
+.button::after,.feature-card::after,.news-tile::after,.social-card::after,.card-sheen::after{
+  inset:auto;top:-40%;bottom:-40%;left:0;width:28%;
+  transform:translateX(-250%) rotate(18deg);opacity:0;
+  transition:none;z-index:1;
+}
+.button:hover::after,.button:focus-visible::after,.feature-card:hover::after,.feature-card:focus-visible::after,.news-tile:hover::after,.news-tile:focus-visible::after,.social-card:hover::after,.social-card:focus-visible::after,.role-card:hover .card-sheen::after,.role-card:focus-visible .card-sheen::after{
+  left:0;animation:card-shine .75s ease both;
+}
+@keyframes card-shine{
+  0%{transform:translateX(-250%) rotate(18deg);opacity:0}
+  15%{opacity:1}
+  85%{opacity:1}
+  100%{transform:translateX(650%) rotate(18deg);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.button::after,.feature-card::after,.news-tile::after,.social-card::after,.card-sheen::after{animation:none!important;opacity:0!important}}
