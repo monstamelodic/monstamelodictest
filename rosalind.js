@@ -1,0 +1,11 @@
+(() => {
+const tabs=[...document.querySelectorAll('.ros-tabs [role="tab"]')];
+function selectTab(tab){tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!selected;});}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',e=>{let index;if(e.key==='ArrowRight')index=(i+1)%tabs.length;if(e.key==='ArrowLeft')index=(i+tabs.length-1)%tabs.length;if(e.key==='Home')index=0;if(e.key==='End')index=tabs.length-1;if(index!==undefined){e.preventDefault();selectTab(tabs[index]);tabs[index].focus();}});});
+const facts=['Always late to memes and trends.','Can’t live without tea.','Watches too much horror.','Very forgetful.'];let fact=0;
+function nextFact(step){fact=(fact+step+facts.length)%facts.length;document.querySelector('#ros-fact').textContent=facts[fact];document.querySelector('#fact-counter').textContent=`${fact+1} / ${facts.length}`;}
+document.querySelector('#fact-prev').addEventListener('click',()=>nextFact(-1));document.querySelector('#fact-next').addEventListener('click',()=>nextFact(1));
+document.querySelector('#sparkles-toggle').addEventListener('click',e=>{const off=document.querySelector('.ros-world').classList.toggle('sparkles-off');e.currentTarget.setAttribute('aria-pressed',String(!off));e.currentTarget.textContent=off?'Sparkles off ✧':'Sparkles on ✧';});
+document.querySelector('#ticker-toggle').addEventListener('click',e=>{const paused=document.querySelector('.ros-ticker').classList.toggle('paused');e.currentTarget.setAttribute('aria-pressed',String(paused));e.currentTarget.setAttribute('aria-label',paused?'Play scrolling banner':'Pause scrolling banner');e.currentTarget.textContent=paused?'▷':'Ⅱ';});
+const dialog=document.querySelector('#ros-photo-dialog');document.querySelectorAll('#portrait-open,.photo-detail').forEach(b=>b.addEventListener('click',()=>dialog.showModal()));document.querySelector('#photo-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
+})();
