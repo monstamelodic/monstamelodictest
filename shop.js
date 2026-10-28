@@ -1,8 +1,8 @@
 (() => {
 const products = [
- {id:'pearl',name:'Pearl Logo Pin',kind:'physical',price:400,image:'shop-assets/pearl-pin.jpg',tag:'POCKET-SIZE CHAOS',description:'A pearly little logo button for your bag, jacket, or growing pin collection.',options:['Pearl / sample size']},
- {id:'midnight',name:'Midnight Logo Pin',kind:'physical',price:400,image:'shop-assets/midnight-pin.jpg',tag:'THE LOGO COLLECTION',description:'Our signature logo, with a deep-purple twist. Tiny merch, big personality.',options:['Midnight purple / sample size']},
- {id:'case',name:'Lilac Logo Case',kind:'physical',price:1800,image:'shop-assets/lilac-case.jpg',tag:'EVERYDAY MONSTA',description:'A soft lilac look for your everyday sidekick. Device options are illustrative.',options:['iPhone 15 — demo','iPhone 16 — demo','iPhone 17 — demo']},
+ {id:'pearl',name:'Pearl Logo Pin',kind:'physical',price:400,image:'pearl-pin.jpg',tag:'POCKET-SIZE CHAOS',description:'A pearly little logo button for your bag, jacket, or growing pin collection.',options:['Pearl / sample size']},
+ {id:'midnight',name:'Midnight Logo Pin',kind:'physical',price:400,image:'midnight-pin.jpg',tag:'THE LOGO COLLECTION',description:'Our signature logo, with a deep-purple twist. Tiny merch, big personality.',options:['Midnight purple / sample size']},
+ {id:'case',name:'Lilac Logo Case',kind:'physical',price:1800,image:'lilac-case.jpg',tag:'EVERYDAY MONSTA',description:'A soft lilac look for your everyday sidekick. Device options are illustrative.',options:['iPhone 15 — demo','iPhone 16 — demo','iPhone 17 — demo']},
  {id:'wallpaper',name:'Monsta Wallpaper Pack',kind:'digital',price:300,image:'Logo.png',tag:'DIGITAL CONCEPT',description:'An example digital extra for your lock screen. No download files included.',options:['Phone wallpaper / digital concept']}
 ];
 const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n/100);
