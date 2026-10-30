@@ -5,4 +5,9 @@ bottles.forEach((b,index)=>b.addEventListener('click',()=>{opener=b;fill(index);
 document.querySelector('#close-note').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{bottles.forEach(b=>b.classList.remove('is-open'));opener?.focus();});dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
 document.querySelector('#previous-note').addEventListener('click',()=>{if(current>0){fill(current-1);document.querySelector('#close-note').focus();}});document.querySelector('#next-note').addEventListener('click',()=>{if(current<bottles.length-1){fill(current+1);document.querySelector('#close-note').focus();}});
 document.querySelector('#motion-toggle').addEventListener('click',e=>{const off=document.body.classList.toggle('motion-off');e.currentTarget.setAttribute('aria-pressed',String(!off));e.currentTarget.textContent=off?'Motion off':'Motion on';});
+const compass=document.querySelector('#nautical-compass'),needle=document.querySelector('#compass-needle');let lastPoint=null,raf=0;
+function aim(){raf=0;if(!lastPoint)return;const r=compass.getBoundingClientRect();const dx=lastPoint.x-(r.left+r.width/2),dy=lastPoint.y-(r.top+r.height/2);if(Math.hypot(dx,dy)>2)needle.style.transform=`rotate(${Math.atan2(dy,dx)*180/Math.PI+90}deg)`;}
+window.addEventListener('pointermove',e=>{lastPoint={x:e.clientX,y:e.clientY};if(!raf)raf=requestAnimationFrame(aim);},{passive:true});
+window.addEventListener('pointerdown',e=>{lastPoint={x:e.clientX,y:e.clientY};aim();},{passive:true});
+window.addEventListener('scroll',()=>{if(lastPoint&&!raf)raf=requestAnimationFrame(aim);},{passive:true});
 })();

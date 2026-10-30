@@ -1,11 +1,15 @@
-RAINY — MESSAGES IN BOTTLES
+RAINY — PHOTOGRAPHIC BOTTLES & SCROLLS
 
-Open members.html and click the white member portrait to visit rainy.html. Rainy is linked from her own profile only; the main navigation and homepage do not include her individual page.
+Open members.html and choose the white member portrait, or open rainy.html directly.
 
-Five illustrated glass bottles reveal her biography, profile, likes, dislikes, and favorites. Each opens an aged note bordered with the provided pearl artwork. Close bottle or Escape returns to the ocean; bottles can be reopened. Previous/Next controls switch notes. Motion toggle pauses bottle and bubble movement. Reduced-motion preferences are respected. No invented portrait, quote, or social handles were added.
+Five supplied bottle images were edited with the built-in image tool into transparent PNG cutouts, with partially transparent glass interiors. The original papers, corks, ship and decorations remain. Notes now use the supplied parchment scroll, also edited to remove its outer white background.
 
-The provided ocean image is the background. Bottles are drawn with CSS. Images are beside the HTML files for straightforward GitHub upload.
+Prompt set: background-extraction; preserve the supplied bottle shape/orientation and opaque contents; remove the white backdrop and empty white glass interior to real/partial alpha while keeping glass reflections. Scroll: remove only exterior white; preserve opaque parchment and blank center.
 
-Upload the contents of this folder to the repository root, replacing matching files. Rosalind's interactive diary and the cleaned shop remain included.
+Compass follows the mouse pointer and touch positions. 26 bubbles and floating bottles can be paused with Motion off. Notes open, close, and reopen; Previous/Next controls switch between them.
 
-Browser checks: all five notes, boundary controls, closing/reopening bottles, and desktop appearance. Local page and image paths verified; JavaScript syntax checked. Mobile responsive CSS included; physical-device testing unavailable.
+Shop files and all shop navigation links have been removed from this version. If a previous shop.html already exists in your GitHub repository, delete shop.html, shop.css and shop.js there after uploading this folder if you want the old direct shop URL removed too. Uploading files alone does not delete old repository files.
+
+Upload all contents of this folder to the repository root. Keep the six new rainy-bottle/scroll PNGs alongside rainy.html. Rosalind's diary is retained.
+
+Browser verified: photographic cutouts, note opening/closing, compass angle changing with pointer positions, scroll appearance, and longer Favorites content. All local paths and absence of shop navigation checked. Mobile layouts included; physical-device verification unavailable.
