@@ -1,0 +1,8 @@
+(() => {
+const bottles=[...document.querySelectorAll('[data-note]')],dialog=document.querySelector('#note-dialog'),content=document.querySelector('#note-content');let current=0,opener=null;
+function fill(index){current=index;content.replaceChildren(document.querySelector('#note-'+bottles[index].dataset.note).content.cloneNode(true));document.querySelector('#note-number').textContent=`0${index+1} / 0${bottles.length}`;document.querySelector('#previous-note').disabled=index===0;document.querySelector('#next-note').disabled=index===bottles.length-1;bottles.forEach((b,i)=>b.classList.toggle('is-open',i===index));dialog.scrollTop=0;}
+bottles.forEach((b,index)=>b.addEventListener('click',()=>{opener=b;fill(index);dialog.showModal();}));
+document.querySelector('#close-note').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{bottles.forEach(b=>b.classList.remove('is-open'));opener?.focus();});dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
+document.querySelector('#previous-note').addEventListener('click',()=>{if(current>0){fill(current-1);document.querySelector('#close-note').focus();}});document.querySelector('#next-note').addEventListener('click',()=>{if(current<bottles.length-1){fill(current+1);document.querySelector('#close-note').focus();}});
+document.querySelector('#motion-toggle').addEventListener('click',e=>{const off=document.body.classList.toggle('motion-off');e.currentTarget.setAttribute('aria-pressed',String(!off));e.currentTarget.textContent=off?'Motion off':'Motion on';});
+})();
